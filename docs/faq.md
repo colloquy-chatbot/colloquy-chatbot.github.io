@@ -15,6 +15,7 @@ Colloquy is an open source library that provides a clean, consistent interface f
 ### When should I use Colloquy?
 
 Colloquy is ideal for developers who:
+- Wish to get up and running quickly with an LLM
 - Want to build applications that use multiple LLM providers (like OpenAI and Claude)
 - Need to let chatbots call application functions to retrieve data or perform actions
 - Want to reduce boilerplate code when working with chatbot APIs
@@ -23,8 +24,8 @@ Colloquy is ideal for developers who:
 ### Which chatbot providers are supported?
 
 Currently, Colloquy supports:
-- OpenAI's ChatGPT (GPT-3.5, GPT-4)
-- Anthropic's Claude (Claude 2, Claude Instant, Claude 3)
+- OpenAI's ChatGPT
+- Anthropic's Claude
 
 We plan to add support for more providers in the future based on community feedback.
 
@@ -104,36 +105,6 @@ Colloquy automatically manages conversation history for you. Each prompt is adde
 
 The conversation history is maintained within the bot instance. If you need to start a fresh conversation, create a new bot instance.
 
-### How do I clear the conversation history?
-
-To clear the conversation history:
-
-{% capture typescript_clear %}
-```typescript
-import { OpenAIBot } from "colloquy_chatbot"
-
-const bot = new OpenAIBot()
-// Some conversation happens...
-
-// Clear the conversation history
-bot.clearHistory()
-```
-{% endcapture %}
-
-{% capture python_clear %}
-```python
-from colloquy_chatbot import OpenAIBot
-
-bot = OpenAIBot()
-# Some conversation happens...
-
-# Clear the conversation history
-bot.clear_history()
-```
-{% endcapture %}
-
-{% include tabs.html group="clear-history" names="TypeScript|Python" typescript=typescript_clear python=python_clear %}
-
 ## Function Calling
 
 ### How does function calling work in Colloquy?
@@ -157,7 +128,7 @@ Colloquy supports all standard JSON types for function parameters:
 - Objects
 - null
 
-Type information can be provided explicitly or inferred from default values in your function definitions.
+Type information can be inferred from default values in your function definitions.
 
 ### Do I need to handle the function calls manually?
 
@@ -177,30 +148,6 @@ This happens transparently when you call `bot.prompt()`.
 Make sure you've set the appropriate environment variables:
 - `OPENAI_API_KEY` for OpenAI
 - `ANTHROPIC_API_KEY` for Claude
-
-Or explicitly pass the API key in the constructor:
-
-{% capture typescript_api_key %}
-```typescript
-import { OpenAIBot } from "colloquy_chatbot"
-
-const bot = new OpenAIBot({
-  apiKey: "your-api-key-here"
-})
-```
-{% endcapture %}
-
-{% capture python_api_key %}
-```python
-from colloquy_chatbot import OpenAIBot
-
-bot = OpenAIBot(
-    api_key="your-api-key-here"
-)
-```
-{% endcapture %}
-
-{% include tabs.html group="api-key" names="TypeScript|Python" typescript=typescript_api_key python=python_api_key %}
 
 ### My function isn't being called correctly
 

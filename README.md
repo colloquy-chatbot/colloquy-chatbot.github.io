@@ -42,6 +42,7 @@ To customize this template for your own project:
 2. Modify content in the `docs/` directory
 3. Update the homepage in `index.markdown`
 4. Add your project information to the `about.markdown` page
+5. Customize styling in `_sass/minima-override/` directory and `assets/main.scss`
 
 ## Documentation Structure
 
@@ -49,6 +50,31 @@ To customize this template for your own project:
 - `docs/api.md` - API reference documentation
 - `docs/examples.md` - Usage examples
 - `docs/faq.md` - Frequently asked questions
+
+## Tabs Component
+
+The documentation uses a custom tabs component to display both TypeScript and Python implementation examples. The component:
+
+- Allows switching between language implementations
+- Synchronizes tab selections across all examples on a page
+- Remembers user's language preference using localStorage
+- Can be used with the following syntax:
+
+```liquid
+{% capture tab_typescript %}
+```typescript
+// TypeScript code here
+```
+{% endcapture %}
+
+{% capture tab_python %}
+```python
+# Python code here
+```
+{% endcapture %}
+
+{% include tabs.html group="example" typescript=tab_typescript python=tab_python %}
+```
 
 ## Contributing
 

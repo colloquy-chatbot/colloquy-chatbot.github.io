@@ -14,7 +14,6 @@ Colloquy was created with several core goals:
 
 - **Unified API**: Provide a single, consistent interface for multiple chatbot providers (currently OpenAI and Claude)
 - **Simplified Function Calling**: Make it easier to let chatbots call your code functions with proper type support
-- **Type Safety**: Provide strong typing for both TypeScript and Python implementations
 - **Developer Experience**: Reduce boilerplate and complexity when building LLM-powered applications
 
 ## Key Features

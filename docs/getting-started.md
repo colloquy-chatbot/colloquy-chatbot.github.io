@@ -36,23 +36,11 @@ To use Colloquy effectively, you'll need:
 
 2. Environment variables set up for your API keys:
 
-{% capture typescript_env %}
 ```bash
 # Add to your .env file or environment
 OPENAI_API_KEY=your_openai_key_here
 ANTHROPIC_API_KEY=your_anthropic_key_here
 ```
-{% endcapture %}
-
-{% capture python_env %}
-```bash
-# Add to your .env file or environment
-OPENAI_API_KEY=your_openai_key_here
-ANTHROPIC_API_KEY=your_anthropic_key_here
-```
-{% endcapture %}
-
-{% include tabs.html group="env-setup" names="TypeScript|Python" typescript=typescript_env python=python_env %}
 
 ## Basic Usage
 
