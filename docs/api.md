@@ -8,135 +8,42 @@ permalink: /docs/api/
 
 This page documents the full API for Colloquy.
 
-## Command Line Interface
+## Create a Chatbot
 
-### Global Options
+With no advanced features, you can create a chatbot like this:
 
-| Option | Description |
-| ------ | ----------- |
-| `--help`, `-h` | Display help information |
-| `--version`, `-v` | Display version information |
-| `--config <path>` | Specify configuration file path |
-| `--verbose` | Enable verbose output |
-
-### Commands
-
-#### `colloquy init`
-
-Initializes a new project with default configuration.
-
-{% capture tab_typescript %}
-```bash
-colloquy init [options]
+{% capture typescript_vanilla_constructor %}
+```typescript
+import { OpenAIBot, ClaudeBot } from "colloquy_chatbot"
+const openai = new OpenAIBot()
+const claude = new ClaudeBot()
 ```
 {% endcapture %}
 
-{% capture tab_python %}
-```bash
-colloquy init [options]
+{% capture python_vanilla_constructor %}
+```python
+from colloquy_chatbot import ClaudeBot, OpenAIBot
+claude = ClaudeBot()
+openai = OpenAIBot()
 ```
 {% endcapture %}
 
-{% include tabs.html names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
+{% include tabs.html group="vanilla-constructor" names="TypeScript|Python" typescript=typescript_vanilla_constructor python=python_vanilla_constructor %}
 
-Options:
+All chatbots provide a consistent interface, so the remainder of these examples will the custom bot `SampleBot`. If you wish to try these examples out, instructions on how to create this bot are included in the documentation on creating custom bots (TODO: add a link), but you can also just sub in `ClaudeBot` or `OpenAIBot` depending on your preference.
 
-| Option | Description |
-| ------ | ----------- |
-| `--template <name>` | Use a specific template |
-| `--force` | Overwrite existing configuration |
+Here's how you can give the bot general instructions (a.k.a `system` prompts):
 
-#### `colloquy start`
-
-Starts the project in development mode.
-
-{% capture tab_typescript %}
-```bash
-colloquy start [options]
+{% capture typescript_instructions %}
+```typescript
+const bot = new SampleBot({ instructions: "Do something interesting" })
 ```
 {% endcapture %}
 
-{% capture tab_python %}
-```bash
-colloquy start [options]
+{% capture python_instructions %}
+```python
+bot = SampleBot(instructions="Do something interesting")
 ```
 {% endcapture %}
 
-{% include tabs.html names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
-
-Options:
-
-| Option | Description |
-| ------ | ----------- |
-| `--port <port>` | Specify port number (default: 3000) |
-| `--host <host>` | Specify host (default: localhost) |
-
-#### `colloquy build`
-
-Builds the project for production.
-
-{% capture tab_typescript %}
-```bash
-colloquy build [options]
-```
-{% endcapture %}
-
-{% capture tab_python %}
-```bash
-colloquy build [options]
-```
-{% endcapture %}
-
-{% include tabs.html names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
-
-Options:
-
-| Option | Description |
-| ------ | ----------- |
-| `--output <dir>` | Specify output directory |
-| `--minify` | Enable minification |
-
-## Configuration Reference
-
-Colloquy uses configuration files to customize behavior - JSON for TypeScript and YAML for Python.
-
-{% capture tab_typescript %}
-```json
-{
-  "name": "my-chatbot",
-  "version": "1.0.0",
-  "port": 3000,
-  "plugins": ["plugin-a", "plugin-b"],
-  "options": {
-    "debug": false,
-    "timeout": 5000
-  }
-}
-```
-{% endcapture %}
-
-{% capture tab_python %}
-```yaml
-name: my-chatbot
-version: 1.0.0
-port: 3000
-plugins:
-  - plugin-a
-  - plugin-b
-options:
-  debug: false
-  timeout: 5000
-```
-{% endcapture %}
-
-{% include tabs.html names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
-
-### Configuration Options
-
-| Option | Type | Description |
-| ------ | ---- | ----------- |
-| `name` | string | Project name |
-| `version` | string | Project version |
-| `port` | number | Development server port |
-| `plugins` | array | List of plugins to use |
-| `options` | object | Additional configuration options |
+{% include tabs.html group="instructions" names="TypeScript|Python" typescript=typescript_instructions python=python_instructions %}

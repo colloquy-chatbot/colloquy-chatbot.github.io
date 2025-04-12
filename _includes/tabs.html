@@ -7,7 +7,7 @@
     {% for name in tab_names %}
       {% assign tab_id = group_id | append: "-" | append: name | slugify %}
       <button class="tab-button" 
-              onclick="openTab(event, '{{ tab_id }}', '{{ name | slugify }}')" 
+              onclick="colloquyOpenTab(event, '{{ tab_id }}', '{{ name | slugify }}')" 
               data-tabset="{{ group_id }}"
               data-lang="{{ name | slugify }}"
               {% if forloop.first %}id="{{ group_id }}-defaultOpen"{% endif %}>
@@ -26,67 +26,93 @@
 </div>
 
 <script>
-// Function to open a specific tab
-function openTab(evt, tabId, langName) {
-  // Get the tabset container
-  var tabset = evt.currentTarget.getAttribute('data-tabset');
-  var tabsetContainer = document.getElementById(tabset);
-  
-  // Hide all tab content in this tabset
-  var tabcontents = tabsetContainer.getElementsByClassName("tab-content");
-  for (var i = 0; i < tabcontents.length; i++) {
-    tabcontents[i].style.display = "none";
-  }
-  
-  // Remove active class from all buttons in this tabset
-  var tablinks = tabsetContainer.getElementsByClassName("tab-button");
-  for (var i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  
-  // Show the selected tab and mark its button as active
-  document.getElementById(tabId).style.display = "block";
-  evt.currentTarget.className += " active";
-  
-  // Save user language preference to localStorage
-  localStorage.setItem('preferredLanguage', langName);
-}
-
-// Initialize all tab sets when the page loads
-document.addEventListener("DOMContentLoaded", function() {
-  // Check if user has a saved preference
-  var preferredLanguage = localStorage.getItem('preferredLanguage');
-  
-  // Get all tabsets
-  var tabsets = document.getElementsByClassName("tabs");
-  
-  for (var t = 0; t < tabsets.length; t++) {
-    var tabset = tabsets[t];
-    var tabsetId = tabset.getAttribute('id');
-    var defaultButton = document.getElementById(tabsetId + "-defaultOpen");
+// Only define the global colloquy tab functions once
+if (typeof window.colloquyOpenTab === 'undefined') {
+  // Function to open a specific tab
+  window.colloquyOpenTab = function(evt, tabId, langName) {
+    // Get the tabset container
+    var tabset = evt.currentTarget.getAttribute('data-tabset');
+    var tabsetContainer = document.getElementById(tabset);
     
-    // If user has a preference, try to select that language
-    if (preferredLanguage) {
-      // Look for a button with this language
+    // Hide all tab content in this tabset
+    var tabcontents = tabsetContainer.getElementsByClassName("tab-content");
+    for (var i = 0; i < tabcontents.length; i++) {
+      tabcontents[i].style.display = "none";
+    }
+    
+    // Remove active class from all buttons in this tabset
+    var tablinks = tabsetContainer.getElementsByClassName("tab-button");
+    for (var i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    
+    // Show the selected tab and mark its button as active
+    document.getElementById(tabId).style.display = "block";
+    evt.currentTarget.className += " active";
+    
+    // Save user language preference to localStorage
+    localStorage.setItem('preferredLanguage', langName);
+    
+    // Switch all other tabsets to the same language
+    window.colloquySwitchAllTabsetsToLanguage(langName);
+  };
+
+  // Function to switch all tabsets to the selected language
+  window.colloquySwitchAllTabsetsToLanguage = function(langName) {
+    // Get all tabsets
+    var tabsets = document.getElementsByClassName("tabs");
+    
+    for (var t = 0; t < tabsets.length; t++) {
+      var tabset = tabsets[t];
       var buttons = tabset.getElementsByClassName("tab-button");
-      var found = false;
       
+      // Find the button with matching language and click it
       for (var i = 0; i < buttons.length; i++) {
-        if (buttons[i].getAttribute("data-lang") === preferredLanguage) {
+        if (buttons[i].getAttribute("data-lang") === langName && 
+            !buttons[i].className.includes("active")) {
           buttons[i].click();
-          found = true;
           break;
         }
       }
+    }
+  };
+
+  // Initialize all tab sets when the page loads
+  document.addEventListener("DOMContentLoaded", function() {
+    // Check if user has a saved preference
+    var preferredLanguage = localStorage.getItem('preferredLanguage');
+    
+    // Get all tabsets
+    var tabsets = document.getElementsByClassName("tabs");
+    
+    for (var t = 0; t < tabsets.length; t++) {
+      var tabset = tabsets[t];
+      var tabsetId = tabset.getAttribute('id');
+      var defaultButton = document.getElementById(tabsetId + "-defaultOpen");
       
-      // If preferred language not found in this tabset, use default
-      if (!found && defaultButton) {
+      // If user has a preference, try to select that language
+      if (preferredLanguage) {
+        // Look for a button with this language
+        var buttons = tabset.getElementsByClassName("tab-button");
+        var found = false;
+        
+        for (var i = 0; i < buttons.length; i++) {
+          if (buttons[i].getAttribute("data-lang") === preferredLanguage) {
+            buttons[i].click();
+            found = true;
+            break;
+          }
+        }
+        
+        // If preferred language not found in this tabset, use default
+        if (!found && defaultButton) {
+          defaultButton.click();
+        }
+      } else if (defaultButton) {
+        // No preference, use default
         defaultButton.click();
       }
-    } else if (defaultButton) {
-      // No preference, use default
-      defaultButton.click();
     }
-  }
-});
+  });
+}
 </script>

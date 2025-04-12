@@ -50,7 +50,7 @@ app.start()
 ```
 {% endcapture %}
 
-{% include tabs.html names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
+{% include tabs.html group="basic-example" names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
 
 ## Custom Plugins
 
@@ -94,7 +94,7 @@ app.start()
 ```
 {% endcapture %}
 
-{% include tabs.html names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
+{% include tabs.html group="custom-plugins" names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
 
 ## Advanced Configuration
 
@@ -171,7 +171,7 @@ app.start(on_start)
 ```
 {% endcapture %}
 
-{% include tabs.html names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
+{% include tabs.html group="advanced-config" names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
 
 ## Command Line Usage
 
@@ -245,4 +245,4 @@ app.start()
 ```
 {% endcapture %}
 
-{% include tabs.html names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
+{% include tabs.html group="integration" names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
