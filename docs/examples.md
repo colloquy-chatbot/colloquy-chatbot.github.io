@@ -21,11 +21,11 @@ const bot = new OpenAIBot()
 
 // Send a message and get a response
 const response = await bot.prompt("Tell me about chatbots")
-console.log(response)
+console.log(response) // "Chatbots are AI programs designed to simulate conversation with human users..."
 
 // Continue the conversation
 const followUp = await bot.prompt("What are their limitations?")
-console.log(followUp)
+console.log(followUp) // "Current chatbots face several limitations including contextual understanding..."
 ```
 {% endcapture %}
 
@@ -38,11 +38,11 @@ bot = OpenAIBot()
 
 # Send a message and get a response
 response = await bot.prompt("Tell me about chatbots")
-print(response)
+print(response) # "Chatbots are AI programs designed to simulate conversation with human users..."
 
 # Continue the conversation
 follow_up = await bot.prompt("What are their limitations?")
-print(follow_up)
+print(follow_up) # "Current chatbots face several limitations including contextual understanding..."
 ```
 {% endcapture %}
 
@@ -65,7 +65,7 @@ const bot = new ClaudeBot({
 
 // The bot will follow these instructions in all responses
 const response = await bot.prompt("How can I read a CSV file?")
-console.log(response) // Will include Python code examples
+console.log(response) // "To read a CSV file in Python, you can use the csv module or pandas: import pandas as pd\ndf = pd.read_csv('file.csv')..."
 ```
 {% endcapture %}
 
@@ -82,7 +82,7 @@ bot = ClaudeBot(
 
 # The bot will follow these instructions in all responses
 response = await bot.prompt("How can I read a CSV file?")
-print(response) # Will include Python code examples
+print(response) # "To read a CSV file in Python, you can use the csv module or pandas: import pandas as pd\ndf = pd.read_csv('file.csv')..."
 ```
 {% endcapture %}
 
@@ -121,7 +121,7 @@ const bot = new OpenAIBot({
 
 // Bot will automatically call functions when needed
 const response = await bot.prompt("What's the weather like in Paris?")
-console.log(response) // Will include actual weather data from function call
+console.log(response) // "The weather in Paris is currently 22°C and sunny."
 ```
 {% endcapture %}
 
@@ -147,7 +147,7 @@ bot = OpenAIBot(
 
 # Bot will automatically call functions when needed
 response = await bot.prompt("What's the weather like in Paris?")
-print(response) # Will include actual weather data from function call
+print(response) # "The weather in Paris is currently 22°C and sunny."
 ```
 {% endcapture %}
 
@@ -211,7 +211,7 @@ const bot = new ClaudeBot({
 
 // Bot will use the enhanced function definition
 const response = await bot.prompt("Find me electronics under $500")
-console.log(response)
+console.log(response) // "I found several electronics under $500: Product 1 matching 'electronics', Product 2 matching 'electronics'..."
 ```
 {% endcapture %}
 
@@ -264,7 +264,7 @@ bot = ClaudeBot(
 
 # Bot will use the enhanced function definition
 response = await bot.prompt("Find me electronics under $500")
-print(response)
+print(response) # "I found several electronics under $500: Product 1 matching 'electronics', Product 2 matching 'electronics'..."
 ```
 {% endcapture %}
 
@@ -317,7 +317,7 @@ const myBot = new CustomBot({
 })
 
 const response = await myBot.prompt("Hello, can you help me?")
-console.log(response)
+console.log(response) // "Yes, I'm here to help! What do you need assistance with today?"
 ```
 {% endcapture %}
 
@@ -355,7 +355,7 @@ my_bot = CustomBot(
 )
 
 response = await my_bot.prompt("Hello, can you help me?")
-print(response)
+print(response) # "Yes, I'm here to help! What do you need assistance with today?"
 ```
 {% endcapture %}
 
