@@ -37,7 +37,7 @@ colloquy init [options]
 ```
 {% endcapture %}
 
-{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}
+{% include tabs.html names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
 
 Options:
 
@@ -62,7 +62,7 @@ colloquy start [options]
 ```
 {% endcapture %}
 
-{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}
+{% include tabs.html names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
 
 Options:
 
@@ -87,7 +87,7 @@ colloquy build [options]
 ```
 {% endcapture %}
 
-{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}
+{% include tabs.html names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
 
 Options:
 
@@ -129,7 +129,7 @@ options:
 ```
 {% endcapture %}
 
-{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}
+{% include tabs.html names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
 
 ### Configuration Options
 

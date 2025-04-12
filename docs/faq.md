@@ -38,7 +38,7 @@ sudo pip install colloquy
 ```
 {% endcapture %}
 
-{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}
+{% include tabs.html names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
 
 {% capture tab_typescript %}
 Alternatively, you can configure npm to install global packages in your user directory without requiring sudo:
@@ -66,7 +66,7 @@ pip install colloquy
 ```
 {% endcapture %}
 
-{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}
+{% include tabs.html names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
 
 ### How do I update Colloquy to the latest version?
 
@@ -84,7 +84,7 @@ pip install --upgrade colloquy
 ```
 {% endcapture %}
 
-{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}
+{% include tabs.html names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
 
 ## Configuration
 
@@ -98,7 +98,7 @@ The configuration file (`colloquy.config.json`) should be placed in the root dir
 The configuration file (`colloquy.yaml`) should be placed in the root directory of your project. You can also specify a custom location using the `--config` flag.
 {% endcapture %}
 
-{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}
+{% include tabs.html names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
 
 ### Can I use environment variables in my configuration?
 
@@ -131,7 +131,7 @@ colloquy start --verbose
 ```
 {% endcapture %}
 
-{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}
+{% include tabs.html names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
 
 {% capture tab_typescript %}
 You can also set the environment variable `DEBUG=colloquy:*` to see all debug logs.
@@ -141,7 +141,7 @@ You can also set the environment variable `DEBUG=colloquy:*` to see all debug lo
 You can also enable debug logging in your configuration file by setting `logging.level: debug` or use the environmental variable `COLLOQUY_LOG_LEVEL=debug`.
 {% endcapture %}
 
-{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}
+{% include tabs.html names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
 
 ## Contributing
 

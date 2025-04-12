@@ -1,6 +1,5 @@
 <div class="tabs">
-  {% assign tab_names = include.tabs | split: "|" %}
-  {% assign tab_contents = include.content | split: "|" %}
+  {% assign tab_names = include.names | split: "|" %}
   
   <div class="tab-buttons">
     {% for name in tab_names %}
@@ -8,50 +7,14 @@
     {% endfor %}
   </div>
   
-  {% for content in tab_contents %}
-    <div id="{{ tab_names[forloop.index0] | slugify }}" class="tab-content">
-      {{ content | markdownify }}
-    </div>
-  {% endfor %}
+  <div id="typescript" class="tab-content">
+    {{ include.typescript | markdownify }}
+  </div>
+  
+  <div id="python" class="tab-content">
+    {{ include.python | markdownify }}
+  </div>
 </div>
-
-<style>
-.tabs {
-  margin-bottom: 20px;
-}
-.tab-buttons {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-}
-.tab-button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 10px 15px;
-  transition: 0.3s;
-  font-size: 14px;
-}
-.tab-button:hover {
-  background-color: #ddd;
-}
-.tab-button.active {
-  background-color: #ccc;
-  font-weight: bold;
-}
-.tab-content {
-  display: none;
-  padding: 0;
-  border: 1px solid #ccc;
-  border-top: none;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
-}
-</style>
 
 <script>
 function openTab(evt, tabName) {
@@ -66,10 +29,28 @@ function openTab(evt, tabName) {
   }
   document.getElementById(tabName).style.display = "block";
   evt.currentTarget.className += " active";
+  
+  // Save user preference to localStorage
+  localStorage.setItem('preferredLanguage', tabName);
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-  // Open the default tab
+  // Check if user has a saved preference
+  var preferredLanguage = localStorage.getItem('preferredLanguage');
+  
+  // If preference exists and the tab exists, open it
+  if (preferredLanguage && document.getElementById(preferredLanguage)) {
+    // Find the button for this tab
+    var buttons = document.getElementsByClassName("tab-button");
+    for (var i = 0; i < buttons.length; i++) {
+      if (buttons[i].getAttribute("onclick").includes(preferredLanguage)) {
+        buttons[i].click();
+        return;
+      }
+    }
+  }
+  
+  // Otherwise open the default tab
   document.getElementById("defaultOpen").click();
 });
 </script>

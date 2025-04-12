@@ -22,7 +22,7 @@ Before installing Colloquy, make sure you have the following prerequisites:
 - pip (latest version)
 {% endcapture %}
 
-{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}
+{% include tabs.html names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
 
 ## Installation
 
@@ -42,7 +42,7 @@ pip install colloquy
 ```
 {% endcapture %}
 
-{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}
+{% include tabs.html names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
 
 ### From Source
 
@@ -68,7 +68,7 @@ pip install -e .
 ```
 {% endcapture %}
 
-{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}
+{% include tabs.html names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
 
 ## Basic Configuration
 
@@ -90,7 +90,7 @@ colloquy init
 This will create a `colloquy.yaml` file in your current directory with default settings.
 {% endcapture %}
 
-{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}
+{% include tabs.html names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
 
 ## Your First Project
 
@@ -114,7 +114,7 @@ colloquy start
 ```
 {% endcapture %}
 
-{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}
+{% include tabs.html names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
 
 ## Next Steps
 

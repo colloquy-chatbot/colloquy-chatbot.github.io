@@ -1,0 +1,44 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+@use "sass:color";
+@import "minima";
+@import "minima-override";
+
+/* Custom styles for tabbed content */
+.tabs {
+  margin-bottom: 20px;
+}
+.tab-buttons {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.tab-button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  transition: 0.3s;
+  font-size: 14px;
+}
+.tab-button:hover {
+  background-color: #ddd;
+}
+.tab-button.active {
+  background-color: #ccc;
+  font-weight: bold;
+}
+.tab-content {
+  display: none;
+  padding: 0;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}

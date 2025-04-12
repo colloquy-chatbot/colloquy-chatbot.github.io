@@ -1,21 +1,27 @@
 ---
 layout: home
-title: Colloquy Documentation
+title: Colloquy
 ---
 
 # Welcome to Colloquy
 
-An open source conversational AI tool that helps create engaging chat experiences.
+An open source library providing a cleaner API on top of chatbot libraries.
 
-## Quick Start
+## Installation
 
+{% capture tab_typescript %}
 ```bash
-# Installation
-npm install colloquy
-
-# Basic usage
-colloquy --help
+npm install colloquy_chatbot
 ```
+{% endcapture %}
+
+{% capture tab_python %}
+```bash
+pip install colloquy_chatbot
+```
+{% endcapture %}
+
+{% include tabs.html names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
 
 ## Features
 
