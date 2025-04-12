@@ -21,13 +21,12 @@ pip install colloquy_chatbot
 ```
 {% endcapture %}
 
-{% include tabs.html names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
+{% include tabs.html group="installation" names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
 
 ## Features
 
-- Natural Language Processing: Create conversational experiences that understand intent
-- Multi-platform Support: Deploy chatbots across web, mobile, and messaging platforms
-- Easy Customization: Build specialized dialogue flows without deep AI knowledge
+- Consistent interface across all supported chatbots (currently OpenAI and Claude APIs)
+- More intuitive function support
 
 ## Documentation
 
