@@ -10,155 +10,210 @@ permalink: /docs/faq/
 
 ### What is Colloquy?
 
-Colloquy is an open source conversational AI tool designed to help create engaging chat experiences. It provides a streamlined framework for building, training, and deploying chatbots.
+Colloquy is an open source library that provides a clean, consistent interface for working with different chatbot APIs. It simplifies the process of building applications with large language models by handling the low-level details of API communication, conversation history, and function calling.
 
-### Who should use Colloquy?
+### When should I use Colloquy?
 
-Colloquy is ideal for developers and organizations who want to build sophisticated conversational interfaces, chatbots, or dialogue systems without extensive AI expertise.
+Colloquy is ideal for developers who:
+- Want to build applications that use multiple LLM providers (like OpenAI and Claude)
+- Need to let chatbots call application functions to retrieve data or perform actions
+- Want to reduce boilerplate code when working with chatbot APIs
+- Prefer strong typing and a clean, consistent API
 
-### Is Colloquy free to use?
+### Which chatbot providers are supported?
 
-Yes, Colloquy is open source and free to use under the MIT License. You can use it for both personal and commercial projects.
+Currently, Colloquy supports:
+- OpenAI's ChatGPT (GPT-3.5, GPT-4)
+- Anthropic's Claude (Claude 2, Claude Instant, Claude 3)
 
-## Installation
+We plan to add support for more providers in the future based on community feedback.
 
-### Why am I getting permission errors during installation?
+## Installation & Setup
 
-If you're seeing permission errors when installing Colloquy globally, you might need to use sudo or adjust your npm permissions:
+### How do I install Colloquy?
 
-{% capture tab_typescript %}
+{% capture typescript_install %}
 ```bash
-sudo npm install -g colloquy
+npm install colloquy_chatbot
 ```
 {% endcapture %}
 
-{% capture tab_python %}
+{% capture python_install %}
 ```bash
-sudo pip install colloquy
+pip install colloquy_chatbot
 ```
 {% endcapture %}
 
-{% include tabs.html group="sudo-install" names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
+{% include tabs.html group="install" names="TypeScript|Python" typescript=typescript_install python=python_install %}
 
-{% capture tab_typescript %}
-Alternatively, you can configure npm to install global packages in your user directory without requiring sudo:
+### How do I set up API keys?
+
+Colloquy looks for API keys in your environment variables. We recommend using a `.env` file or your environment's secret management system.
+
+Required environment variables depend on which providers you want to use:
 
 ```bash
-npm config set prefix ~/.npm-global
+# For OpenAI
+OPENAI_API_KEY=your_openai_key_here
+
+# For Claude
+ANTHROPIC_API_KEY=your_anthropic_key_here
 ```
 
-Then add `export PATH=~/.npm-global/bin:$PATH` to your `~/.profile` or `~/.bashrc`.
-{% endcapture %}
+You can also pass API keys directly in code, but this is not recommended for security reasons.
 
-{% capture tab_python %}
-Alternatively, you can install packages to your user directory without requiring sudo:
+## Usage Questions
 
-```bash
-pip install --user colloquy
-```
+### How do I switch between different chatbot providers?
 
-Or create and use a virtual environment:
+Switching between providers is as simple as using a different bot class:
 
-```bash
-python -m venv venv
-source venv/bin/activate
-pip install colloquy
-```
-{% endcapture %}
+{% capture typescript_switch %}
+```typescript
+import { OpenAIBot, ClaudeBot } from "colloquy_chatbot"
 
-{% include tabs.html group="user-install" names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
+// Use OpenAI
+const openaiBot = new OpenAIBot()
+const openaiResponse = await openaiBot.prompt("Hello")
 
-### How do I update Colloquy to the latest version?
-
-To update Colloquy to the latest version, run:
-
-{% capture tab_typescript %}
-```bash
-npm update -g colloquy
+// Use Claude
+const claudeBot = new ClaudeBot()
+const claudeResponse = await claudeBot.prompt("Hello")
 ```
 {% endcapture %}
 
-{% capture tab_python %}
-```bash
-pip install --upgrade colloquy
+{% capture python_switch %}
+```python
+from colloquy_chatbot import OpenAIBot, ClaudeBot
+
+# Use OpenAI
+openai_bot = OpenAIBot()
+openai_response = await openai_bot.prompt("Hello")
+
+# Use Claude
+claude_bot = ClaudeBot()
+claude_response = await claude_bot.prompt("Hello")
 ```
 {% endcapture %}
 
-{% include tabs.html group="update" names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
+{% include tabs.html group="switching" names="TypeScript|Python" typescript=typescript_switch python=python_switch %}
 
-## Configuration
+### How does conversation history work?
 
-### Where should I put my configuration file?
+Colloquy automatically manages conversation history for you. Each prompt is added to the conversation history, along with the response. This context is used for subsequent prompts.
 
-{% capture tab_typescript %}
-The configuration file (`colloquy.config.json`) should be placed in the root directory of your project. You can also specify a custom location using the `--config` flag.
+The conversation history is maintained within the bot instance. If you need to start a fresh conversation, create a new bot instance.
+
+### How do I clear the conversation history?
+
+To clear the conversation history:
+
+{% capture typescript_clear %}
+```typescript
+import { OpenAIBot } from "colloquy_chatbot"
+
+const bot = new OpenAIBot()
+// Some conversation happens...
+
+// Clear the conversation history
+bot.clearHistory()
+```
 {% endcapture %}
 
-{% capture tab_python %}
-The configuration file (`colloquy.yaml`) should be placed in the root directory of your project. You can also specify a custom location using the `--config` flag.
+{% capture python_clear %}
+```python
+from colloquy_chatbot import OpenAIBot
+
+bot = OpenAIBot()
+# Some conversation happens...
+
+# Clear the conversation history
+bot.clear_history()
+```
 {% endcapture %}
 
-{% include tabs.html group="config-location" names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
+{% include tabs.html group="clear-history" names="TypeScript|Python" typescript=typescript_clear python=python_clear %}
 
-### Can I use environment variables in my configuration?
+## Function Calling
 
-Yes, Colloquy supports using environment variables in your configuration file. Use the syntax `${ENV_VAR_NAME}` and the values will be replaced at runtime.
+### How does function calling work in Colloquy?
+
+Colloquy simplifies function calling by automatically handling the conversion between your code functions and the format expected by the LLM API. The basic steps are:
+
+1. Define your functions
+2. Wrap them using `PromptFunction` (TypeScript) or `@prompt_function` (Python)
+3. Pass them to the bot constructor
+4. Use the bot normally - it will call your functions when appropriate
+
+See the [Function Calling section](/docs/getting-started/#function-calling) in the Getting Started guide for examples.
+
+### What types of parameters are supported?
+
+Colloquy supports all standard JSON types for function parameters:
+- Strings
+- Numbers
+- Booleans
+- Arrays
+- Objects
+- null
+
+Type information can be provided explicitly or inferred from default values in your function definitions.
+
+### Do I need to handle the function calls manually?
+
+No, Colloquy handles the entire function calling flow automatically:
+1. Sends your function definitions to the LLM
+2. Recognizes when the LLM wants to call a function
+3. Calls your function with the parameters from the LLM
+4. Sends the function results back to the LLM
+5. Returns the final response
+
+This happens transparently when you call `bot.prompt()`.
 
 ## Troubleshooting
 
-### Colloquy won't start - what should I check?
+### I'm getting "No API key provided" errors
 
-If Colloquy won't start, check the following:
+Make sure you've set the appropriate environment variables:
+- `OPENAI_API_KEY` for OpenAI
+- `ANTHROPIC_API_KEY` for Claude
 
-1. Verify that your configuration file is valid JSON
-2. Check for port conflicts (another service might be using the same port)
-3. Review the console output for error messages
-4. Check system requirements (Node.js version, etc.)
+Or explicitly pass the API key in the constructor:
 
-### How do I debug Colloquy?
+{% capture typescript_api_key %}
+```typescript
+import { OpenAIBot } from "colloquy_chatbot"
 
-To enable debug logging, use the `--verbose` flag when running Colloquy commands:
-
-{% capture tab_typescript %}
-```bash
-colloquy start --verbose
+const bot = new OpenAIBot({
+  apiKey: "your-api-key-here"
+})
 ```
 {% endcapture %}
 
-{% capture tab_python %}
-```bash
-colloquy start --verbose
+{% capture python_api_key %}
+```python
+from colloquy_chatbot import OpenAIBot
+
+bot = OpenAIBot(
+    api_key="your-api-key-here"
+)
 ```
 {% endcapture %}
 
-{% include tabs.html group="verbose" names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
+{% include tabs.html group="api-key" names="TypeScript|Python" typescript=typescript_api_key python=python_api_key %}
 
-{% capture tab_typescript %}
-You can also set the environment variable `DEBUG=colloquy:*` to see all debug logs.
-{% endcapture %}
+### My function isn't being called correctly
 
-{% capture tab_python %}
-You can also enable debug logging in your configuration file by setting `logging.level: debug` or use the environmental variable `COLLOQUY_LOG_LEVEL=debug`.
-{% endcapture %}
+Common issues with function calling:
+1. **Parameter naming**: Make sure parameter names match between your function definition and how they're referred to in prompts
+2. **Type issues**: The LLM might provide data in a different format than expected
+3. **Specificity**: Make your function descriptions clear and specific about when they should be used
+4. **Context**: Ensure your prompt gives enough context for the LLM to know when to use the function
 
-{% include tabs.html group="debug-env" names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
+### How do I report bugs or request features?
 
-## Contributing
+Please open an issue on our GitHub repositories:
+- [TypeScript Implementation](https://github.com/colloquy-chatbot/colloquy/issues)
+- [Python Implementation](https://github.com/colloquy-chatbot/colloquy-python/issues)
 
-### How can I contribute to Colloquy?
-
-We welcome contributions! Start by checking out our [contribution guidelines](https://github.com/colloquy-chatbot/colloquy/blob/main/CONTRIBUTING.md). You can help by:
-
-1. Reporting bugs
-2. Suggesting new features
-3. Improving documentation
-4. Submitting pull requests
-
-### Where can I get help if I'm stuck?
-
-If you're stuck or have questions, you can:
-
-1. Check the [documentation](/docs/)
-2. Open an issue on [GitHub](https://github.com/colloquy-chatbot/colloquy/issues)
-3. Join our [Discord community](https://discord.gg/colloquy)
-4. Ask a question on [Stack Overflow](https://stackoverflow.com/questions/tagged/colloquy) with the 'colloquy' tag
+Include as much detail as possible: steps to reproduce, expected vs. actual behavior, and your environment details.
