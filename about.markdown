@@ -4,15 +4,26 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+# About Project
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+Project is an open source tool designed to help developers solve common problems efficiently.
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+## Project History
 
+Project started in 2023 as a solution to [specific problem]. Since then, it has grown into a full-featured development tool used by teams around the world.
 
-[jekyll-organization]: https://github.com/jekyll
+## Team
+
+Project is maintained by a dedicated team of contributors:
+
+- **Lead Developer**: Jane Smith
+- **Core Contributors**: John Doe, Alice Johnson
+- **Community Leads**: Bob Miller, Carol White
+
+## Contributing
+
+We welcome contributions from the community! Check out our [contribution guidelines](https://github.com/username/project/blob/main/CONTRIBUTING.md) to get started.
+
+## License
+
+Project is licensed under the MIT License. See the [LICENSE](https://github.com/username/project/blob/main/LICENSE) file for details.
