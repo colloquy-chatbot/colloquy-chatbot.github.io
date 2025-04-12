@@ -6,118 +6,193 @@ permalink: /docs/getting-started/
 
 # Getting Started with Colloquy
 
-This guide will help you install Colloquy and get up and running quickly.
-
-## Prerequisites
-
-Before installing Colloquy, make sure you have the following prerequisites:
-
-{% capture tab_typescript %}
-- Node.js (v14 or later)
-- npm (v7 or later)
-{% endcapture %}
-
-{% capture tab_python %}
-- Python (v3.8 or later)
-- pip (latest version)
-{% endcapture %}
-
-{% include tabs.html group="prerequisites" names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
+Colloquy provides a clean, consistent interface for working with different chatbot libraries. This guide will help you get started quickly.
 
 ## Installation
 
-### npm
+Install Colloquy using your preferred package manager:
 
-The easiest way to install Colloquy is via npm:
-
-{% capture tab_typescript %}
+{% capture typescript_install %}
 ```bash
-npm install -g colloquy
+npm install colloquy_chatbot
 ```
 {% endcapture %}
 
-{% capture tab_python %}
+{% capture python_install %}
 ```bash
-pip install colloquy
+pip install colloquy_chatbot
 ```
 {% endcapture %}
 
-{% include tabs.html group="npm-install" names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
+{% include tabs.html group="installation" names="TypeScript|Python" typescript=typescript_install python=python_install %}
 
-### From Source
+## Prerequisites
 
-You can also install Colloquy from source:
+To use Colloquy effectively, you'll need:
 
-{% capture tab_typescript %}
+1. An API key for at least one supported chatbot service:
+   - OpenAI (for ChatGPT)
+   - Anthropic (for Claude)
+
+2. Environment variables set up for your API keys:
+
+{% capture typescript_env %}
 ```bash
-# Clone TypeScript repository
-git clone https://github.com/colloquy-chatbot/colloquy.git
-cd colloquy
-npm install
-npm run build
-npm link
+# Add to your .env file or environment
+OPENAI_API_KEY=your_openai_key_here
+ANTHROPIC_API_KEY=your_anthropic_key_here
 ```
 {% endcapture %}
 
-{% capture tab_python %}
+{% capture python_env %}
 ```bash
-# Clone Python repository
-git clone https://github.com/colloquy-chatbot/colloquy-python.git
-cd colloquy-python
-pip install -e .
+# Add to your .env file or environment
+OPENAI_API_KEY=your_openai_key_here
+ANTHROPIC_API_KEY=your_anthropic_key_here
 ```
 {% endcapture %}
 
-{% include tabs.html group="source-install" names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
+{% include tabs.html group="env-setup" names="TypeScript|Python" typescript=typescript_env python=python_env %}
 
-## Basic Configuration
+## Basic Usage
 
-After installation, you'll need to set up a basic configuration file:
+Here's a simple example to get you started with either OpenAI's GPT or Anthropic's Claude:
 
-{% capture tab_typescript %}
-```bash
-colloquy init
-```
+{% capture typescript_basic %}
+```typescript
+import { OpenAIBot, ClaudeBot } from "colloquy_chatbot"
 
-This will create a `colloquy.config.json` file in your current directory with default settings.
-{% endcapture %}
+// Choose which bot to use
+const bot = new OpenAIBot()
+// Or: const bot = new ClaudeBot()
 
-{% capture tab_python %}
-```bash
-colloquy init
-```
+// Send a message and get a response
+const response = await bot.prompt("Hello, can you help me with a question?")
+console.log(response) // "How can I help you?"
 
-This will create a `colloquy.yaml` file in your current directory with default settings.
-{% endcapture %}
-
-{% include tabs.html group="configuration" names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
-
-## Your First Project
-
-Let's create a simple project to demonstrate the basic functionality:
-
-{% capture tab_typescript %}
-```bash
-mkdir my-chatbot-ts
-cd my-chatbot-ts
-colloquy init
-colloquy start
+// Continue the conversation
+const followUp = await bot.prompt("What is Colloquy?")
+console.log(followUp) // "Colloquy is a chatbot library..."
 ```
 {% endcapture %}
 
-{% capture tab_python %}
-```bash
-mkdir my-chatbot-py
-cd my-chatbot-py
-colloquy init
-colloquy start
+{% capture python_basic %}
+```python
+from colloquy_chatbot import OpenAIBot, ClaudeBot
+
+# Choose which bot to use
+bot = OpenAIBot()
+# Or: bot = ClaudeBot()
+
+# Send a message and get a response
+response = await bot.prompt("Hello, can you help me with a question?")
+print(response) # "How can I help you?"
+
+# Continue the conversation
+follow_up = await bot.prompt("What is Colloquy?")
+print(follow_up) # "Colloquy is a chatbot library..."
 ```
 {% endcapture %}
 
-{% include tabs.html group="first-project" names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
+{% include tabs.html group="basic-usage" names="TypeScript|Python" typescript=typescript_basic python=python_basic %}
+
+## Providing Instructions
+
+You can guide the bot's behavior by providing system instructions during initialization:
+
+{% capture typescript_instructions %}
+```typescript
+import { OpenAIBot } from "colloquy_chatbot"
+
+// Create bot with specific instructions
+const bot = new OpenAIBot({
+  instructions: "You are a helpful assistant specialized in JavaScript. Keep responses concise."
+})
+
+// The bot will follow these instructions
+const response = await bot.prompt("How do I sort an array?")
+console.log(response) // "Use array.sort() method..."
+```
+{% endcapture %}
+
+{% capture python_instructions %}
+```python
+from colloquy_chatbot import OpenAIBot
+
+# Create bot with specific instructions
+bot = OpenAIBot(
+    instructions="You are a helpful assistant specialized in Python. Keep responses concise."
+)
+
+# The bot will follow these instructions
+response = await bot.prompt("How do I sort a list?")
+print(response) # "Use list.sort() method..."
+```
+{% endcapture %}
+
+{% include tabs.html group="instructions" names="TypeScript|Python" typescript=typescript_instructions python=python_instructions %}
+
+## Function Calling
+
+One of Colloquy's most powerful features is the ability to let the chatbot call functions to retrieve information or perform actions:
+
+{% capture typescript_functions %}
+```typescript
+import { ClaudeBot, PromptFunction } from "colloquy_chatbot"
+
+// Define a function for the bot to use
+function getWeather(location: string, unit: string = "celsius") {
+  // In a real app, this would call a weather API
+  return `Weather in ${location}: 22°${unit === "celsius" ? "C" : "F"}, Sunny`
+}
+
+// Create bot with access to this function
+const bot = new ClaudeBot({
+  functions: [
+    new PromptFunction(getWeather, {
+      description: "Get current weather for a location"
+    })
+  ]
+})
+
+// Bot will call the function when needed
+const response = await bot.prompt("What's the weather in Tokyo?")
+console.log(response) // "22°C and sunny in Tokyo."
+```
+{% endcapture %}
+
+{% capture python_functions %}
+```python
+from colloquy_chatbot import ClaudeBot, prompt_function
+
+# Define a function for the bot to use
+@prompt_function(description="Get current weather for a location")
+def get_weather(location: str, unit: str = "celsius"):
+    # In a real app, this would call a weather API
+    return f"Weather in {location}: 22°{'C' if unit == 'celsius' else 'F'}, Sunny"
+
+# Create bot with access to this function
+bot = ClaudeBot(
+    functions=[get_weather]
+)
+
+# Bot will call the function when needed
+response = await bot.prompt("What's the weather in Tokyo?")
+print(response) # "22°C and sunny in Tokyo."
+```
+{% endcapture %}
+
+{% include tabs.html group="functions" names="TypeScript|Python" typescript=typescript_functions python=python_functions %}
 
 ## Next Steps
 
-- Explore the [API Reference](/docs/api) to learn about available commands
-- Check out the [Examples](/docs/examples) for common use cases
-- Read the [FAQ](/docs/faq) for answers to common questions
+Now that you understand the basics, you can:
+
+1. Explore the [API Reference](/docs/api) for detailed documentation
+2. Check out more [Examples](/docs/examples) for common use cases
+3. Read the [FAQ](/docs/faq) for answers to common questions
+
+For advanced usage, consider:
+- Creating custom bot implementations
+- Using advanced function parameter customization
+- Building multi-modal applications
