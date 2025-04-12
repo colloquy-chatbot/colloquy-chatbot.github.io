@@ -1,6 +1,6 @@
-# Project Documentation
+# Colloquy Documentation
 
-This repository contains the documentation website for Project, an open source tool for developers. The site is built with Jekyll and hosted on GitHub Pages.
+This repository contains the documentation website for Colloquy, an open source tool for interacting with chatbots. The site is built with Jekyll and hosted on GitHub Pages.
 
 ## Local Development
 
@@ -19,8 +19,8 @@ This repository contains the documentation website for Project, an open source t
 
 2. Clone this repository
    ```
-   git clone https://github.com/username/project-docs.git
-   cd project-docs
+   git clone https://github.com/colloquy-chatbot/colloquy-chatbot.github.io.git
+   cd colloquy-chatbot.github.io
    ```
 
 3. Install dependencies
@@ -53,7 +53,7 @@ To customize this template for your own project:
 
 ## Contributing
 
-Contributions to the documentation are welcome! Please see the [contribution guidelines](https://github.com/username/project/blob/main/CONTRIBUTING.md) for more information.
+Contributions to the documentation are welcome! Please see the [contribution guidelines](https://github.com/colloquy-chatbot/colloquy/blob/main/CONTRIBUTING.md) for more information.
 
 ## License
 

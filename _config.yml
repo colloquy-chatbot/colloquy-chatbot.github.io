@@ -1,12 +1,12 @@
 # Site settings
-title: Project Documentation
-email: project@example.com
+title: Colloquy Documentation
+email: colloquy@example.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Official documentation for the Project - an open source tool for developers.
+  Official documentation for Colloquy - an open source conversational AI tool.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-github_username: project
-repository: username/project
+github_username: colloquy-chatbot
+repository: colloquy-chatbot/colloquy
 
 # Build settings
 theme: minima

@@ -4,17 +4,17 @@ title: About
 permalink: /about/
 ---
 
-# About Project
+# About Colloquy
 
-Project is an open source tool designed to help developers solve common problems efficiently.
+Colloquy is an open source conversational AI tool designed to help create engaging chat experiences.
 
 ## Project History
 
-Project started in 2023 as a solution to [specific problem]. Since then, it has grown into a full-featured development tool used by teams around the world.
+Colloquy started in 2023 as a solution to make conversational AI more accessible. Since then, it has grown into a full-featured chat platform used by teams around the world.
 
 ## Team
 
-Project is maintained by a dedicated team of contributors:
+Colloquy is maintained by a dedicated team of contributors:
 
 - **Lead Developer**: Jane Smith
 - **Core Contributors**: John Doe, Alice Johnson
@@ -22,8 +22,8 @@ Project is maintained by a dedicated team of contributors:
 
 ## Contributing
 
-We welcome contributions from the community! Check out our [contribution guidelines](https://github.com/username/project/blob/main/CONTRIBUTING.md) to get started.
+We welcome contributions from the community! Check out our [contribution guidelines](https://github.com/colloquy-chatbot/colloquy/blob/main/CONTRIBUTING.md) to get started.
 
 ## License
 
-Project is licensed under the MIT License. See the [LICENSE](https://github.com/username/project/blob/main/LICENSE) file for details.
+Colloquy is licensed under the MIT License. See the [LICENSE](https://github.com/colloquy-chatbot/colloquy/blob/main/LICENSE) file for details.

@@ -1,27 +1,27 @@
 ---
 layout: home
-title: Project Documentation
+title: Colloquy Documentation
 ---
 
-# Welcome to Project
+# Welcome to Colloquy
 
-An open source tool for developers that helps solve common problems.
+An open source conversational AI tool that helps create engaging chat experiences.
 
 ## Quick Start
 
 ```bash
 # Installation
-npm install project
+npm install colloquy
 
 # Basic usage
-project --help
+colloquy --help
 ```
 
 ## Features
 
-- Feature 1: Does something useful
-- Feature 2: Solves a common problem
-- Feature 3: Makes development easier
+- Natural Language Processing: Create conversational experiences that understand intent
+- Multi-platform Support: Deploy chatbots across web, mobile, and messaging platforms
+- Easy Customization: Build specialized dialogue flows without deep AI knowledge
 
 ## Documentation
 

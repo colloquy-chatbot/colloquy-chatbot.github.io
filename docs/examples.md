@@ -4,9 +4,9 @@ title: Examples
 permalink: /docs/examples/
 ---
 
-# Project Examples
+# Colloquy Examples
 
-This page provides examples of common use cases for Project.
+This page provides examples of common use cases for Colloquy.
 
 ## Basic Example
 
@@ -14,10 +14,10 @@ A simple example demonstrating the core functionality:
 
 ```javascript
 // Import the library
-const project = require('project');
+const colloquy = require('colloquy');
 
 // Initialize a new instance
-const app = project.create();
+const app = colloquy.create();
 
 // Configure options
 app.configure({
@@ -35,11 +35,11 @@ Example showing how to use custom plugins:
 
 ```javascript
 // Import the library
-const project = require('project');
+const colloquy = require('colloquy');
 const customPlugin = require('./my-plugin');
 
 // Initialize with plugins
-const app = project.create({
+const app = colloquy.create({
   plugins: [customPlugin]
 });
 
@@ -56,11 +56,11 @@ Example with advanced configuration options:
 
 ```javascript
 // Import the library
-const project = require('project');
+const colloquy = require('colloquy');
 
 // Initialize with advanced configuration
-const app = project.create({
-  name: 'advanced-app',
+const app = colloquy.create({
+  name: 'my-chatbot',
   version: '1.0.0',
   port: 8080,
   middlewares: ['logger', 'security'],
@@ -69,7 +69,7 @@ const app = project.create({
     connection: {
       host: 'localhost',
       port: 5432,
-      database: 'project_db',
+      database: 'colloquy_db',
       user: 'admin',
       password: '********'
     }
@@ -77,32 +77,32 @@ const app = project.create({
   logging: {
     level: 'info',
     format: 'json',
-    destination: '/var/log/project.log'
+    destination: '/var/log/colloquy.log'
   }
 });
 
 // Start with custom callback
 app.start(() => {
-  console.log('Application started successfully!');
+  console.log('Chatbot started successfully!');
 });
 ```
 
 ## Command Line Usage
 
-Example of using Project from the command line:
+Example of using Colloquy from the command line:
 
 ```bash
 # Initialize a new project
-project init --template basic
+colloquy init --template basic
 
 # Start development server
-project start --port 3000 --watch
+colloquy start --port 3000 --watch
 
 # Build for production
-project build --minify --output ./dist
+colloquy build --minify --output ./dist
 
 # Deploy application
-project deploy --target production
+colloquy deploy --target production
 ```
 
 ## Integration with Other Tools
@@ -111,16 +111,16 @@ Example showing integration with other popular tools:
 
 ```javascript
 // Import libraries
-const project = require('project');
+const colloquy = require('colloquy');
 const express = require('express');
 
 // Create Express app
 const expressApp = express();
 
-// Create Project instance
-const app = project.create();
+// Create Colloquy instance
+const app = colloquy.create();
 
-// Integrate Express with Project
+// Integrate Express with Colloquy
 app.use(expressApp);
 
 // Add Express routes

@@ -6,7 +6,7 @@ permalink: /docs/api/
 
 # API Reference
 
-This page documents the full API for Project.
+This page documents the full API for Colloquy.
 
 ## Command Line Interface
 
@@ -21,12 +21,12 @@ This page documents the full API for Project.
 
 ### Commands
 
-#### `project init`
+#### `colloquy init`
 
 Initializes a new project with default configuration.
 
 ```bash
-project init [options]
+colloquy init [options]
 ```
 
 Options:
@@ -36,12 +36,12 @@ Options:
 | `--template <name>` | Use a specific template |
 | `--force` | Overwrite existing configuration |
 
-#### `project start`
+#### `colloquy start`
 
 Starts the project in development mode.
 
 ```bash
-project start [options]
+colloquy start [options]
 ```
 
 Options:
@@ -51,12 +51,12 @@ Options:
 | `--port <port>` | Specify port number (default: 3000) |
 | `--host <host>` | Specify host (default: localhost) |
 
-#### `project build`
+#### `colloquy build`
 
 Builds the project for production.
 
 ```bash
-project build [options]
+colloquy build [options]
 ```
 
 Options:
@@ -68,7 +68,7 @@ Options:
 
 ## Configuration Reference
 
-Project uses a JSON configuration file (`project.config.json`) to customize behavior.
+Colloquy uses a JSON configuration file (`colloquy.config.json`) to customize behavior.
 
 ```json
 {

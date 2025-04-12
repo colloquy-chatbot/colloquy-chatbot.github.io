@@ -4,13 +4,13 @@ title: Getting Started
 permalink: /docs/getting-started/
 ---
 
-# Getting Started with Project
+# Getting Started with Colloquy
 
-This guide will help you install Project and get up and running quickly.
+This guide will help you install Colloquy and get up and running quickly.
 
 ## Prerequisites
 
-Before installing Project, make sure you have the following prerequisites:
+Before installing Colloquy, make sure you have the following prerequisites:
 
 - Node.js (v14 or later)
 - npm (v7 or later)
@@ -19,19 +19,19 @@ Before installing Project, make sure you have the following prerequisites:
 
 ### npm
 
-The easiest way to install Project is via npm:
+The easiest way to install Colloquy is via npm:
 
 ```bash
-npm install -g project
+npm install -g colloquy
 ```
 
 ### From Source
 
-You can also install Project from source:
+You can also install Colloquy from source:
 
 ```bash
-git clone https://github.com/username/project.git
-cd project
+git clone https://github.com/colloquy-chatbot/colloquy.git
+cd colloquy
 npm install
 npm run build
 npm link
@@ -42,20 +42,20 @@ npm link
 After installation, you'll need to set up a basic configuration file:
 
 ```bash
-project init
+colloquy init
 ```
 
-This will create a `project.config.json` file in your current directory with default settings.
+This will create a `colloquy.config.json` file in your current directory with default settings.
 
 ## Your First Project
 
 Let's create a simple project to demonstrate the basic functionality:
 
 ```bash
-mkdir my-project
-cd my-project
-project init
-project start
+mkdir my-chatbot
+cd my-chatbot
+colloquy init
+colloquy start
 ```
 
 ## Next Steps
