@@ -15,17 +15,16 @@
     </div>
 
     {% for name in tab_names %}
-    {% assign tab_id = group_id | append: "-" | append: name | slugify %}
-    {% assign lang_lower = name | slugify %}
+      {% assign tab_id = group_id | append: "-" | append: name | slugify %}
+      {% assign lang_lower = name | slugify %}
 
-    <div id="{{ tab_id }}" class="tab-content">
-        {{ tab_id }}
-        {% if include[tab_id] != nil %}
-          {{ include[tab_id] | markdownify }}
+      <div id="{{ tab_id }}" class="tab-content">
+        {% if include[lang_lower] != nil %}
+          {{ include[lang_lower] | markdownify }}
         {% else %}
           Example not found for language
         {% endif %}
-    </div>
+      </div>
     {% endfor %}
 </div>
 

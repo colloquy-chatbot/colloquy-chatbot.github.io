@@ -1,0 +1,30 @@
+@use "sass:color";
+@use "variables" as vars;
+
+/**
+ * Links override
+ */
+a {
+  &:visited {
+    color: vars.$link-visited-color;
+  }
+}
+
+/**
+ * Tables override
+ */
+table {
+  color: vars.$table-text-color;
+  
+  tr {
+    &:nth-child(even) {
+      background-color: vars.$table-zebra-color;
+    }
+  }
+  
+  th {
+    background-color: vars.$table-header-bg-color;
+    border: 1px solid vars.$table-header-border;
+    border-bottom-color: vars.$table-header-border-bottom;
+  }
+}

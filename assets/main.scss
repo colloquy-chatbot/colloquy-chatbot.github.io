@@ -3,8 +3,9 @@
 ---
 
 @use "sass:color";
+
+// Import the base minima theme
 @import "minima";
-@import "minima-override";
 
 /* Custom styles for tabbed content */
 .tabs {
@@ -41,4 +42,8 @@
   border-top: none;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
+}
+
+.highlight {
+    margin-bottom: 0
 }

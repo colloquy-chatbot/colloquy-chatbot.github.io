@@ -8,7 +8,6 @@ This repository contains the documentation website for Colloquy, an open source 
 
 - Ruby version 2.5.0 or higher
 - RubyGems
-- GCC and Make
 
 ### Setup
 

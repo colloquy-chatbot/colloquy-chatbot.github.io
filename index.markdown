@@ -9,19 +9,19 @@ An open source library providing a cleaner API on top of chatbot libraries.
 
 ## Installation
 
-{% capture tab_typescript %}
+{% capture installation_typescript %}
 ```bash
 npm install colloquy_chatbot
 ```
 {% endcapture %}
 
-{% capture tab_python %}
+{% capture installation_python %}
 ```bash
 pip install colloquy_chatbot
 ```
 {% endcapture %}
 
-{% include tabs.html group="installation" names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
+{% include tabs.html group="installation" python=installation_python typescript=installation_typescript %}
 
 ## Features
 

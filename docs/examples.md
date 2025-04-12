@@ -246,3 +246,29 @@ app.start()
 {% endcapture %}
 
 {% include tabs.html group="integration" names="TypeScript|Python" typescript=tab_typescript python=tab_python %}
+
+## Simplified Tabs Example
+
+This example demonstrates the simplified tab syntax:
+
+{% capture typescript_simplified %}
+```typescript
+// Simple example with inferred tab names
+import { create } from 'colloquy';
+
+const app = create();
+app.start();
+```
+{% endcapture %}
+
+{% capture python_simplified %}
+```python
+# Simple example with inferred tab names
+from colloquy import create
+
+app = create()
+app.start()
+```
+{% endcapture %}
+
+{% include tabs.html group="simplified" %}
