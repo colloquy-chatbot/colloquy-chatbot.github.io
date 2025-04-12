@@ -26,10 +26,21 @@ Yes, Colloquy is open source and free to use under the MIT License. You can use 
 
 If you're seeing permission errors when installing Colloquy globally, you might need to use sudo or adjust your npm permissions:
 
+{% capture tab_typescript %}
 ```bash
 sudo npm install -g colloquy
 ```
+{% endcapture %}
 
+{% capture tab_python %}
+```bash
+sudo pip install colloquy
+```
+{% endcapture %}
+
+{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}
+
+{% capture tab_typescript %}
 Alternatively, you can configure npm to install global packages in your user directory without requiring sudo:
 
 ```bash
@@ -37,20 +48,57 @@ npm config set prefix ~/.npm-global
 ```
 
 Then add `export PATH=~/.npm-global/bin:$PATH` to your `~/.profile` or `~/.bashrc`.
+{% endcapture %}
+
+{% capture tab_python %}
+Alternatively, you can install packages to your user directory without requiring sudo:
+
+```bash
+pip install --user colloquy
+```
+
+Or create and use a virtual environment:
+
+```bash
+python -m venv venv
+source venv/bin/activate
+pip install colloquy
+```
+{% endcapture %}
+
+{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}
 
 ### How do I update Colloquy to the latest version?
 
 To update Colloquy to the latest version, run:
 
+{% capture tab_typescript %}
 ```bash
 npm update -g colloquy
 ```
+{% endcapture %}
+
+{% capture tab_python %}
+```bash
+pip install --upgrade colloquy
+```
+{% endcapture %}
+
+{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}
 
 ## Configuration
 
 ### Where should I put my configuration file?
 
+{% capture tab_typescript %}
 The configuration file (`colloquy.config.json`) should be placed in the root directory of your project. You can also specify a custom location using the `--config` flag.
+{% endcapture %}
+
+{% capture tab_python %}
+The configuration file (`colloquy.yaml`) should be placed in the root directory of your project. You can also specify a custom location using the `--config` flag.
+{% endcapture %}
+
+{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}
 
 ### Can I use environment variables in my configuration?
 
@@ -71,11 +119,29 @@ If Colloquy won't start, check the following:
 
 To enable debug logging, use the `--verbose` flag when running Colloquy commands:
 
+{% capture tab_typescript %}
 ```bash
 colloquy start --verbose
 ```
+{% endcapture %}
 
+{% capture tab_python %}
+```bash
+colloquy start --verbose
+```
+{% endcapture %}
+
+{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}
+
+{% capture tab_typescript %}
 You can also set the environment variable `DEBUG=colloquy:*` to see all debug logs.
+{% endcapture %}
+
+{% capture tab_python %}
+You can also enable debug logging in your configuration file by setting `logging.level: debug` or use the environmental variable `COLLOQUY_LOG_LEVEL=debug`.
+{% endcapture %}
+
+{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}
 
 ## Contributing
 

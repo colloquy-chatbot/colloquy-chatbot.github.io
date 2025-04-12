@@ -12,12 +12,13 @@ This page provides examples of common use cases for Colloquy.
 
 A simple example demonstrating the core functionality:
 
-```javascript
+{% capture tab_typescript %}
+```typescript
 // Import the library
-const colloquy = require('colloquy');
+import { create } from 'colloquy';
 
 // Initialize a new instance
-const app = colloquy.create();
+const app = create();
 
 // Configure options
 app.configure({
@@ -28,18 +29,41 @@ app.configure({
 // Start the application
 app.start();
 ```
+{% endcapture %}
+
+{% capture tab_python %}
+```python
+# Import the library
+from colloquy import create
+
+# Initialize a new instance
+app = create()
+
+# Configure options
+app.configure({
+  "port": 3000,
+  "debug": True
+})
+
+# Start the application
+app.start()
+```
+{% endcapture %}
+
+{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}
 
 ## Custom Plugins
 
 Example showing how to use custom plugins:
 
-```javascript
+{% capture tab_typescript %}
+```typescript
 // Import the library
-const colloquy = require('colloquy');
-const customPlugin = require('./my-plugin');
+import { create } from 'colloquy';
+import customPlugin from './my-plugin';
 
 // Initialize with plugins
-const app = colloquy.create({
+const app = create({
   plugins: [customPlugin]
 });
 
@@ -49,17 +73,40 @@ app.use(customPlugin.middleware);
 // Start the application
 app.start();
 ```
+{% endcapture %}
+
+{% capture tab_python %}
+```python
+# Import the library
+from colloquy import create
+from my_plugin import custom_plugin
+
+# Initialize with plugins
+app = create(
+  plugins=[custom_plugin]
+)
+
+# Use plugin features
+app.use(custom_plugin.middleware)
+
+# Start the application
+app.start()
+```
+{% endcapture %}
+
+{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}
 
 ## Advanced Configuration
 
 Example with advanced configuration options:
 
-```javascript
+{% capture tab_typescript %}
+```typescript
 // Import the library
-const colloquy = require('colloquy');
+import { create } from 'colloquy';
 
 // Initialize with advanced configuration
-const app = colloquy.create({
+const app = create({
   name: 'my-chatbot',
   version: '1.0.0',
   port: 8080,
@@ -86,6 +133,45 @@ app.start(() => {
   console.log('Chatbot started successfully!');
 });
 ```
+{% endcapture %}
+
+{% capture tab_python %}
+```python
+# Import the library
+from colloquy import create
+
+# Initialize with advanced configuration
+app = create({
+  "name": "my-chatbot",
+  "version": "1.0.0",
+  "port": 8080,
+  "middlewares": ["logger", "security"],
+  "storage": {
+    "type": "database",
+    "connection": {
+      "host": "localhost",
+      "port": 5432,
+      "database": "colloquy_db",
+      "user": "admin",
+      "password": "********"
+    }
+  },
+  "logging": {
+    "level": "info",
+    "format": "json",
+    "destination": "/var/log/colloquy.log"
+  }
+})
+
+# Start with custom callback
+def on_start():
+    print("Chatbot started successfully!")
+
+app.start(on_start)
+```
+{% endcapture %}
+
+{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}
 
 ## Command Line Usage
 
@@ -109,16 +195,17 @@ colloquy deploy --target production
 
 Example showing integration with other popular tools:
 
-```javascript
+{% capture tab_typescript %}
+```typescript
 // Import libraries
-const colloquy = require('colloquy');
-const express = require('express');
+import { create } from 'colloquy';
+import express from 'express';
 
 // Create Express app
 const expressApp = express();
 
 // Create Colloquy instance
-const app = colloquy.create();
+const app = create();
 
 // Integrate Express with Colloquy
 app.use(expressApp);
@@ -131,3 +218,31 @@ expressApp.get('/api', (req, res) => {
 // Start both together
 app.start();
 ```
+{% endcapture %}
+
+{% capture tab_python %}
+```python
+# Import libraries
+from colloquy import create
+from flask import Flask, jsonify
+
+# Create Flask app
+flask_app = Flask(__name__)
+
+# Create Colloquy instance
+app = create()
+
+# Add Flask routes
+@flask_app.route('/api')
+def api_endpoint():
+    return jsonify({"status": "ok"})
+
+# Integrate Flask with Colloquy
+app.use(flask_app)
+
+# Start both together
+app.start()
+```
+{% endcapture %}
+
+{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}

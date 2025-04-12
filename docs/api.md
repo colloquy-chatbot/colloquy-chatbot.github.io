@@ -25,9 +25,19 @@ This page documents the full API for Colloquy.
 
 Initializes a new project with default configuration.
 
+{% capture tab_typescript %}
 ```bash
 colloquy init [options]
 ```
+{% endcapture %}
+
+{% capture tab_python %}
+```bash
+colloquy init [options]
+```
+{% endcapture %}
+
+{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}
 
 Options:
 
@@ -40,9 +50,19 @@ Options:
 
 Starts the project in development mode.
 
+{% capture tab_typescript %}
 ```bash
 colloquy start [options]
 ```
+{% endcapture %}
+
+{% capture tab_python %}
+```bash
+colloquy start [options]
+```
+{% endcapture %}
+
+{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}
 
 Options:
 
@@ -55,9 +75,19 @@ Options:
 
 Builds the project for production.
 
+{% capture tab_typescript %}
 ```bash
 colloquy build [options]
 ```
+{% endcapture %}
+
+{% capture tab_python %}
+```bash
+colloquy build [options]
+```
+{% endcapture %}
+
+{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}
 
 Options:
 
@@ -68,11 +98,12 @@ Options:
 
 ## Configuration Reference
 
-Colloquy uses a JSON configuration file (`colloquy.config.json`) to customize behavior.
+Colloquy uses configuration files to customize behavior - JSON for TypeScript and YAML for Python.
 
+{% capture tab_typescript %}
 ```json
 {
-  "name": "my-project",
+  "name": "my-chatbot",
   "version": "1.0.0",
   "port": 3000,
   "plugins": ["plugin-a", "plugin-b"],
@@ -82,6 +113,23 @@ Colloquy uses a JSON configuration file (`colloquy.config.json`) to customize be
   }
 }
 ```
+{% endcapture %}
+
+{% capture tab_python %}
+```yaml
+name: my-chatbot
+version: 1.0.0
+port: 3000
+plugins:
+  - plugin-a
+  - plugin-b
+options:
+  debug: false
+  timeout: 5000
+```
+{% endcapture %}
+
+{% include tabs.html tabs="TypeScript|Python" content=tab_typescript|tab_python %}
 
 ### Configuration Options
 
