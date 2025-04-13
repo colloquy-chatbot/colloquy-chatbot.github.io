@@ -19,6 +19,7 @@
       {% assign lang_lower = name | slugify %}
 
       <div id="{{ tab_id }}" class="tab-content">
+        {{ include }}
         {% if include[lang_lower] != nil %}
           {{ include[lang_lower] | markdownify }}
         {% else %}
