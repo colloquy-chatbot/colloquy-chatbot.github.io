@@ -19,7 +19,6 @@
       {% assign lang_lower = name | slugify %}
 
       <div id="{{ tab_id }}" class="tab-content">
-        {{ include }}
         {% if include[lang_lower] != nil %}
           {{ include[lang_lower] | markdownify }}
         {% else %}
@@ -87,7 +86,7 @@
         // Initialize all tab sets when the page loads
         document.addEventListener("DOMContentLoaded", function () {
             // Check if user has a saved preference
-            var preferredLanguage = localStorage.getItem('preferredLanguage');
+            var preferredLanguage = localStorage.getItem('preferredLanguage') || 'typescript';
 
             // Get all tabsets
             var tabsets = document.getElementsByClassName("tabs");
